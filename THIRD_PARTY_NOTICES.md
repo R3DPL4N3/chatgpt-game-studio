@@ -8,7 +8,7 @@ Inspired by the role-oriented game-development workflow in:
 - Source license: MIT, Copyright (c) 2026 Donchitos.
 - Pinned license: https://github.com/R3DPL4N3/Claude-Code-Game-Studios/blob/05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418/LICENSE
 
-This is a small independently written Codex-native toolkit, not a complete port or feature-parity fork. Upstream agent definitions, hooks, commands, and scripts are not bundled. The upstream license notice is retained below for clear attribution. No upstream affiliation or endorsement is implied.
+This is a Codex-native adaptation, not a complete port or feature-parity fork. The 49 role names and descriptions are adapted from upstream; role instructions, coordination and helper code are rewritten for this toolkit. Upstream executable configuration, full agent instructions, hooks, commands and scripts are not bundled. The upstream license notice is retained below for clear attribution. No upstream affiliation or endorsement is implied.
 
 ## Upstream MIT notice
 
@@ -40,3 +40,7 @@ SOFTWARE.
 - https://learn.chatgpt.com/docs/build-skills
 
 Documentation informed compatibility decisions; it is not vendored. No engine source, asset packs, or third-party runtime dependencies are included.
+
+## 49-role Codex adaptation (2026-11-02)
+
+The 49 role names and descriptions in `studio/agents.json` and `.codex/agents/` are adapted from the upstream `.claude/agents/` at the pinned commit above. Role-specific instructions are rewritten for this toolkit's scope, ownership and evidence workflow. The upstream MIT notice below/above applies to this derived taxonomy and description material. Claude front matter, tool grants, model assignments, hooks and slash commands are not imported as executable Codex settings. This is not a complete port of the upstream skills or hook system.

@@ -1,71 +1,57 @@
-# Codex Game Studio
+# Codex Game Studio — 49 specialists
 
-A small, inspectable game-development workflow for Codex. **One feature, a small diff, and evidence before “done.”**
+A Codex-native game-development studio toolkit: **49 custom agent definitions**, a coordinator skill, bounded team routing, explicit file ownership, and evidence before “done.” Inspired by Claude-Code-Game-Studios and adapted to Codex rather than blindly renaming Claude configuration.
 
-This is an independent workflow toolkit, not an OpenAI product, game engine, autonomous studio, or guarantee of working games. It draws inspiration from Claude-Code-Game-Studios without pretending that renamed Claude hooks run in Codex.
+This is independent software, not an OpenAI product, game engine or guarantee of working games. **49 available roles does not mean 49 agents running at once.** Native spawning must be supported by the actual Codex client.
 
-## What you get
+## What's included
 
-- Three repo-local skills: plan a feature, implement it, and review/test it.
-- Short working agreements in `AGENTS.md`.
-- Unity and Unreal playbooks, with explicit editor and multiplayer verification boundaries.
-- A non-overwriting installer and dependency-free scaffold checks.
-- [Türkçe başlangıç rehberi](docs/QUICKSTART_TR.md).
+- 49 project-scoped `.codex/agents/*.toml` definitions using the upstream role taxonomy: creative/technical direction, production, design, programming, art, audio, narrative, QA, release and Unity/Unreal/Godot specialists.
+- A native project configuration with a four-child concurrency cap and no model or permission overrides.
+- `game-studio` coordination plus three focused skills for planning, implementation and review.
+- A role registry, task routing helper and handoff template; the coordinator owns dependencies, file ownership and integration.
+- Preview-first non-overwriting installation, dependency-free tests, English docs and a [Türkçe başlangıç rehberi](docs/QUICKSTART_TR.md).
 
-The three roles are **workflow responsibilities**, not three automatically launched agents. One Codex session can follow them sequentially. If your Codex environment supports subagents, a separate reviewer can inspect the completed diff; this repository does not configure or require that feature.
+[All 49 roles](docs/AGENT_ROSTER.md) · [Coordination protocol](studio/COORDINATION.md) · [Compatibility](docs/CODEX_COMPATIBILITY.md) · [Test evidence](docs/TEST_REPORT.md)
 
 ## Quick start
 
-Requirements: Python 3.10+ for the helper scripts; a Codex environment with access to the game repository. Unity/Unreal and their toolchains are needed only to build or run a real game.
+Python **3.11+** is required for the tooling and TOML validation. A compatible Codex client and actual game repository are required for live use. Engine/toolchain installation is separate.
 
-1. Clone or download this repository.
-2. Validate the toolkit:
+```sh
+python scripts/validate.py
+python -m unittest discover -s tests -v
+python scripts/studio.py list
+python scripts/studio.py route --area network --engine unreal
+python scripts/install.py --target /path/to/game
+# Review the preview, then:
+python scripts/install.py --target /path/to/game --apply
+```
 
-   ```sh
-   python scripts/validate.py
-   python -m unittest discover -s tests -v
-   ```
-3. Preview installation into an **existing** game repository:
+On Windows use `py -3` if necessary. Quote paths containing spaces. Existing instructions, config or agent files cause a conflict before writes; **manually merge them, do not delete them to satisfy the installer**. No global settings, secrets, game assets, paid services or external API runner are installed. See [installation](docs/INSTALLATION.md).
 
-   ```sh
-   python scripts/install.py --target /path/to/game
-   ```
-4. Review the printed file list, then install:
+Open the **game root** in a fresh Codex session, fill `studio/PROJECT.md` with actual engine/version/build commands, and ask Codex which custom agents and spawning tools it sees. Native role discovery depends on client support, project trust and managed configuration. Never change trust or permissions automatically to force it.
 
-   ```sh
-   python scripts/install.py --target /path/to/game --apply
-   ```
+## First mission: a showable vertical slice
 
-On Windows use `py -3` instead of `python` if necessary, and quote paths containing spaces. The installer copies only workflow files, makes no network calls, changes no global Codex settings, and never overwrites an existing destination. Conflicts abort the whole preflight; manually merge existing `AGENTS.md` guidance instead of deleting it. Read [installation details](docs/INSTALLATION.md).
+> Use game-studio. Inspect this project's actual engine, working systems and licensed assets. Build a small, polished top-down extraction demo: enter a compact ruin, fight one enemy type, loot a chest and reach an extraction zone before time expires. Include smooth right-click/held movement, camera zoom, one attack and one special ability, readable health feedback, atmospheric lighting/audio, and clear win/death/retry flow. Preserve existing working controls and multiplayer; do not rebuild networking or add accounts, matchmaking or auction systems. Keep the main session as coordinator. Select relevant specialists from the 49; use at most four children concurrently, disjoint file ownership and independent QA when available. First give a brief implementation order, then implement within this scope. Ask before a major architectural change, new paid dependency or scope expansion. Deliver runnable increments, explain changed files, actually play and test each flow where tools allow, and show captured evidence. Label unavailable tests NOT RUN. Make the playable result impressive, not the amount of code or paperwork.
 
-5. Open **the game repository** in Codex and start a new session. Ask it to list the instructions and skills it can see. If skills are unavailable in that client, explicitly ask it to read the three installed `SKILL.md` files; do not assume discovery succeeded.
-6. Use this first prompt:
+A fresh toolkit is not itself a game project. If no game is present, stop to ask for the target project/engine rather than pretending to run it. Cut optional presentation work if needed to finish the core loop first.
 
-   > Read AGENTS.md and studio/PROJECT.md. Use game-plan-feature to plan one small change. Explain the existing scene/prefab or Blueprint setup and the files you would touch. Do not implement until I approve the plan.
+## How coordination works
 
-Fill `studio/PROJECT.md` with the actual engine version, paths and commands. Nothing in this toolkit chooses an engine, imports assets, writes gameplay code, or publishes builds for you.
+1. Main session acts as producer/coordinator and selects a small relevant team.
+2. Design/architecture inputs precede dependent implementation; independent research can run in parallel.
+3. Each writable file has one owner. Shared/binary assets and editor actions are serialized.
+4. Reviewers examine the integrated revision; a genuine separate reviewer is distinguished from self-review.
+5. Coordinator resolves defects, reruns checks and delivers one concise report with PASS, FAIL, BLOCKED and NOT RUN.
 
-## Everyday loop
+The routing helper **only prints suggestions and handoff skeletons**. Codex's native tools perform real delegation. If custom discovery is unavailable but spawning exists, pass selected role instructions explicitly to supported generic children. If no spawning exists, use labeled sequential role passes. Never fabricate49 agent activity.
 
-1. **Plan:** pick one observable outcome, exclusions, affected files, and acceptance checks.
-2. **Implement:** after authorization, make the smallest useful change; preserve editor-owned content and existing architecture.
-3. **Review/test:** inspect the diff, run applicable checks, observe gameplay where possible, and disclose blocked tests.
-4. **Explain:** say what changed, why, how to test it, and what remains unverified.
+For small work, keep using `game-plan-feature`, `game-implement-feature` and `game-review-test` directly. Full studio capability does not require a committee for each tiny edit.
 
-Example: “Holding right mouse updates the move target; release keeps the last target.” This is one feature. Inventory, matchmaking, networking replacement, and UI redesign are separate work.
+## Limits and credit
 
-Use [FEATURE.md](templates/FEATURE.md) and [EVIDENCE.md](templates/EVIDENCE.md) when useful; they are not mandatory paperwork for every tiny change.
+Local tests validate the registry, native TOML files, installer and deterministic routing. Live Codex discovery/spawning, Windows/macOS and Unity/Unreal/Godot gameplay have **not been tested** in this environment. No CI workflow is configured. Successful toolkit tests are not a game acceptance test.
 
-## Verification limits
-
-The Python checks validate this toolkit and installer, **not a Unity or Unreal game**. No engine runtime, live Codex skill-selection session, multiplayer session, or asset import is certified by those checks. Successful compilation alone does not prove gameplay correctness. See [verification guide](docs/VERIFICATION.md).
-
-## Compatibility and sources
-
-This repository uses documented `AGENTS.md` and `.agents/skills/<name>/SKILL.md` conventions. It does not ship Claude slash commands, hooks, secret/API-key configuration, or a custom agent scheduler. Client capabilities vary; confirm local skill discovery in your actual Codex environment.
-
-- [Codex project instructions](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
-- [Codex skills](https://learn.chatgpt.com/docs/build-skills)
-- [Provenance and upstream credit](THIRD_PARTY_NOTICES.md)
-
-MIT license; see [LICENSE](LICENSE). Commercial game assets and engine licenses are separate and are not included.
+[MIT license](LICENSE) · [Upstream attribution and pinned provenance](THIRD_PARTY_NOTICES.md). The49 taxonomy/role descriptions are adapted from upstream; this is not a port of all74 upstream skills or Claude hooks. Commercial assets and engine licenses remain separate.

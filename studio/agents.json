@@ -1,0 +1,447 @@
+{
+  "schema_version": 1,
+  "upstream_commit": "05ad7c8a5b8aa2aa86bbd3439ae7cf7295cac418",
+  "agents": [
+    {
+      "id": "accessibility-specialist",
+      "department": "design",
+      "lead": "ux-designer",
+      "engine": "any",
+      "description": "Accessibility standards and assistive features — remapping, text scaling, colorblind modes, screen reader support.",
+      "file": ".codex/agents/accessibility-specialist.toml",
+      "focus": "Audit keyboard/controller-only navigation, focus order, readable contrast, remapping, captions and motion sensitivity. Test representative assistive workflows; do not claim certification from a checklist."
+    },
+    {
+      "id": "ai-programmer",
+      "department": "engineering",
+      "lead": "lead-programmer",
+      "engine": "any",
+      "description": "Implements game AI — behavior trees, state machines, pathfinding, perception, decision-making, NPC and enemy behavior, AI debugging.",
+      "file": ".codex/agents/ai-programmer.toml",
+      "focus": "Implement bounded NPC perception, navigation and decision state transitions. Test unreachable targets, lost targets, death and repeated spawn; measure AI cost rather than increasing tick work blindly."
+    },
+    {
+      "id": "analytics-engineer",
+      "department": "engineering",
+      "lead": "technical-director",
+      "engine": "any",
+      "description": "Telemetry and analytics — event tracking, player behavior, A/B test frameworks, dashboard specification, data pipelines.",
+      "file": ".codex/agents/analytics-engineer.toml",
+      "focus": "Define minimal events, schema versions, deduplication and retention. Keep personal data out of events; test consent and offline/retry paths. Do not provision telemetry services without authorization."
+    },
+    {
+      "id": "art-director",
+      "department": "art",
+      "lead": "creative-director",
+      "engine": "any",
+      "description": "Owns visual identity — style guides, art bible, asset standards, color palettes, UI visual direction.",
+      "file": ".codex/agents/art-director.toml",
+      "focus": "Define a coherent palette, silhouettes, lighting and readability from existing licensed assets. Review real captured frames against a small visual target; do not invent asset availability or buy packs."
+    },
+    {
+      "id": "audio-director",
+      "department": "audio",
+      "lead": "creative-director",
+      "engine": "any",
+      "description": "Owns sonic identity — music direction, sound palette, audio implementation strategy, mix balance.",
+      "file": ".codex/agents/audio-director.toml",
+      "focus": "Choose a readable sonic hierarchy, loudness budgets and music transitions. Test simultaneous events and mute/pause behavior; distinguish sound specifications from actually audible implementation."
+    },
+    {
+      "id": "community-manager",
+      "department": "production",
+      "lead": "producer",
+      "engine": "any",
+      "description": "Player-facing communication — patch notes, social posts, community updates, feedback collection, player bug triage, crisis communication.",
+      "file": ".codex/agents/community-manager.toml",
+      "focus": "Turn verified changes into clear patch notes and triage feedback by reproducible impact. Draft only; external posting, outreach and promises require explicit user authorization."
+    },
+    {
+      "id": "creative-director",
+      "department": "direction",
+      "lead": "producer",
+      "engine": "any",
+      "description": "Highest creative authority — vision, tone, aesthetic direction. Use when a decision affects game identity or department leads deadlock.",
+      "file": ".codex/agents/creative-director.toml",
+      "focus": "Keep the playable experience aligned with the requested fantasy and tone. Resolve cross-discipline tradeoffs using player-visible evidence; recommend cuts instead of adding scope. The user retains final creative authority."
+    },
+    {
+      "id": "devops-engineer",
+      "department": "engineering",
+      "lead": "technical-director",
+      "engine": "any",
+      "description": "Build pipelines, CI/CD configuration, version control workflow, branching strategy, automated test pipelines, deployment infrastructure.",
+      "file": ".codex/agents/devops-engineer.toml",
+      "focus": "Make reproducible builds and test commands with minimal permissions. Check caches, artifacts and secret handling. Do not deploy, purchase infrastructure or change repository security without authorization."
+    },
+    {
+      "id": "economy-designer",
+      "department": "design",
+      "lead": "game-designer",
+      "engine": "any",
+      "description": "Resource economies — loot tables, sink/faucet analysis, progression curve calibration, economic balance.",
+      "file": ".codex/agents/economy-designer.toml",
+      "focus": "Model loot probability, sinks/faucets and progression using explicit assumptions. Check expected rewards and edge cases with small simulations; do not add monetization or predatory retention mechanics unsolicited."
+    },
+    {
+      "id": "engine-programmer",
+      "department": "engineering",
+      "lead": "lead-programmer",
+      "engine": "any",
+      "description": "Core engine systems — rendering pipeline, physics, memory, resource loading, scene management, performance-critical framework code.",
+      "file": ".codex/agents/engine-programmer.toml",
+      "focus": "Investigate rendering, physics, resource lifecycle or scene systems only where needed. Profile before altering low-level infrastructure; preserve engine conventions and test load/unload and ownership boundaries."
+    },
+    {
+      "id": "game-designer",
+      "department": "design",
+      "lead": "creative-director",
+      "engine": "any",
+      "description": "Mechanical and systems design — core loops, progression, combat, economy, player-facing rules. Mechanics-level questions.",
+      "file": ".codex/agents/game-designer.toml",
+      "focus": "Specify observable core-loop rules, player decisions, failure and recovery. Convert vague ideas into small acceptance criteria and tunable values. Keep technical implementation assigned to programmers."
+    },
+    {
+      "id": "gameplay-programmer",
+      "department": "engineering",
+      "lead": "lead-programmer",
+      "engine": "any",
+      "description": "Implements designed mechanics as code — player systems, combat, interactive features, gameplay system code.",
+      "file": ".codex/agents/gameplay-programmer.toml",
+      "focus": "Implement player movement, combat and interactions in small testable changes. Preserve editor-exposed tuning and ownership. Test cancellation, repeated input, death and scene changes, not only the happy path."
+    },
+    {
+      "id": "godot-csharp-specialist",
+      "department": "engine",
+      "lead": "godot-specialist",
+      "engine": "godot",
+      "description": "Godot 4 C# quality — .NET patterns, attribute-based exports, signal delegates, async patterns, type-safe node access.",
+      "file": ".codex/agents/godot-csharp-specialist.toml",
+      "focus": "Check the project Godot and .NET versions before APIs. Preserve exported properties, signal subscriptions and node lifetimes; test async cancellation and scene unload with typed C# boundaries."
+    },
+    {
+      "id": "godot-gdextension-specialist",
+      "department": "engine",
+      "lead": "godot-specialist",
+      "engine": "godot",
+      "description": "Native code integration with Godot — GDExtension API, godot-cpp and godot-rust bindings, custom node types, the native boundary.",
+      "file": ".codex/agents/godot-gdextension-specialist.toml",
+      "focus": "Check engine/binding ABI compatibility and native object ownership. Isolate extension interfaces, validate builds for actual targets and test node teardown. Do not introduce native complexity without measured need."
+    },
+    {
+      "id": "godot-gdscript-specialist",
+      "department": "engine",
+      "lead": "godot-specialist",
+      "engine": "godot",
+      "description": "GDScript code quality — static typing enforcement, signal architecture, coroutine patterns, GDScript idioms, typed and performant.",
+      "file": ".codex/agents/godot-gdscript-specialist.toml",
+      "focus": "Use typed GDScript and explicit signal lifetimes consistent with the existing project. Verify node paths, resource ownership, await cancellation and repeated scene entry; do not rewrite C# systems for preference."
+    },
+    {
+      "id": "godot-shader-specialist",
+      "department": "engine",
+      "lead": "godot-specialist",
+      "engine": "godot",
+      "description": "Godot rendering customization — shading language, visual shaders, material setup, particle shaders, post-processing.",
+      "file": ".codex/agents/godot-shader-specialist.toml",
+      "focus": "Match shaders to the actual Godot renderer and target devices. Check uniforms, transparency, lighting and overdraw on a rendered frame; a parsed shader alone is not visual validation."
+    },
+    {
+      "id": "godot-specialist",
+      "department": "engine",
+      "lead": "technical-director",
+      "engine": "godot",
+      "description": "Authority on Godot-specific patterns and APIs — node/scene architecture, signals, resources; guides GDScript vs C# vs GDExtension.",
+      "file": ".codex/agents/godot-specialist.toml",
+      "focus": "Inspect scene ownership, nodes, resources and signals in the pinned Godot version. Choose the narrow relevant language/rendering specialist, preserve existing language choice and verify imported asset references."
+    },
+    {
+      "id": "lead-programmer",
+      "department": "engineering",
+      "lead": "technical-director",
+      "engine": "any",
+      "description": "Lead programmer — code-level architecture, coding standards, code review, API design, refactoring strategy, assigning work to specialist programmers.",
+      "file": ".codex/agents/lead-programmer.toml",
+      "focus": "Map interfaces and file ownership, assign narrow implementation tasks and review integration. Reject duplicate systems and unnecessary abstraction; ensure every change has acceptance tests and an accountable owner."
+    },
+    {
+      "id": "level-designer",
+      "department": "design",
+      "lead": "game-designer",
+      "engine": "any",
+      "description": "Spatial design for levels and areas — encounter layouts, pacing, difficulty, layout planning, environmental storytelling.",
+      "file": ".codex/agents/level-designer.toml",
+      "focus": "Create compact readable encounter paths, navigation, cover and extraction placement. Test traversal, spawn safety, blocked routes and pacing in the running level; distinguish a layout plan from a built scene."
+    },
+    {
+      "id": "live-ops-designer",
+      "department": "design",
+      "lead": "producer",
+      "engine": "any",
+      "description": "Post-launch content — seasonal events, battle passes, content cadence, retention, engagement analytics. Keeps the game fresh.",
+      "file": ".codex/agents/live-ops-designer.toml",
+      "focus": "Plan sustainable event cadence and content configuration with rollback. Check time zones, expiry and eligibility boundaries. Do not launch events, change live rewards or create recurring services without authorization."
+    },
+    {
+      "id": "localization-lead",
+      "department": "design",
+      "lead": "producer",
+      "engine": "any",
+      "description": "Internationalization architecture — i18n system design, string extraction workflows, locale testing, locale-specific issues, translation pipeline.",
+      "file": ".codex/agents/localization-lead.toml",
+      "focus": "Keep text externalized using existing localization tools. Check placeholders, plural forms, fonts, text expansion and right-to-left flow; preserve translation IDs and test actual locale switching."
+    },
+    {
+      "id": "narrative-director",
+      "department": "narrative",
+      "lead": "creative-director",
+      "engine": "any",
+      "description": "Story architecture, world-building, character design, dialogue strategy. Narrative structure and direction rather than writing individual lines.",
+      "file": ".codex/agents/narrative-director.toml",
+      "focus": "Define concise story beats, character motivations and world consistency supporting gameplay. Delegate individual prose to writer and lore to world-builder; keep narrative scope compatible with the playable slice."
+    },
+    {
+      "id": "network-programmer",
+      "department": "engineering",
+      "lead": "lead-programmer",
+      "engine": "any",
+      "description": "Multiplayer networking — state replication, lag compensation, matchmaking, network protocol, netcode and bandwidth optimization.",
+      "file": ".codex/agents/network-programmer.toml",
+      "focus": "Trace authority, prediction and replication before changing networked movement or combat. Test host, owning client and observer under latency; validate requests server-side and never infer multiplayer correctness from standalone."
+    },
+    {
+      "id": "performance-analyst",
+      "department": "engineering",
+      "lead": "technical-director",
+      "engine": "any",
+      "description": "Performance analyst — profiling, bottlenecks, memory analysis, frame time investigation, recommends optimizations, tracks metrics over time.",
+      "file": ".codex/agents/performance-analyst.toml",
+      "focus": "Capture representative frame-time, memory and allocation evidence with build/hardware context. Identify bottlenecks and before/after measurements; label estimates and avoid unsupported FPS improvement claims."
+    },
+    {
+      "id": "producer",
+      "department": "direction",
+      "lead": null,
+      "engine": "any",
+      "description": "Production concerns — sprint planning, milestone tracking, risk, scope, cross-department coordination when multiple departments must synchronize.",
+      "file": ".codex/agents/producer.toml",
+      "focus": "Coordinate the selected specialists, dependencies, scope and completion evidence. Maintain one lightweight task ledger, enforce file ownership, and integrate results. Do not spawn all 49, add paperwork without value, or override user decisions."
+    },
+    {
+      "id": "prototyper",
+      "department": "engineering",
+      "lead": "lead-programmer",
+      "engine": "any",
+      "description": "Throwaway builds — concept prototypes after brainstorm to test an idea is fun before GDDs; vertical slices pre-production. Speed over standards.",
+      "file": ".codex/agents/prototyper.toml",
+      "focus": "Build the smallest playable experiment that answers one design question. Keep throwaway code isolated and label shortcuts; capture a real playtest before recommending production architecture."
+    },
+    {
+      "id": "qa-lead",
+      "department": "quality",
+      "lead": "producer",
+      "engine": "any",
+      "description": "Test strategy and process — test plan creation, bug severity assessment, regression planning, release quality gates, readiness evaluation.",
+      "file": ".codex/agents/qa-lead.toml",
+      "focus": "Set acceptance, regression and release gates from user-visible risk. Require independent evidence where available; reject unsupported PASS claims and maintain explicit FAIL, BLOCKED and NOT RUN results."
+    },
+    {
+      "id": "qa-tester",
+      "department": "quality",
+      "lead": "qa-lead",
+      "engine": "any",
+      "description": "Writes test cases, bug reports, and checklists — test case generation, regression checklist creation, execution documentation.",
+      "file": ".codex/agents/qa-tester.toml",
+      "focus": "Execute reproducible cases with setup, actions, expected/actual outcomes and evidence. Include repeated input, interruption and restart paths. Do not mark a test passed because code looks plausible."
+    },
+    {
+      "id": "release-manager",
+      "department": "production",
+      "lead": "producer",
+      "engine": "any",
+      "description": "Release pipeline — certification checklists, store submissions and page prep, platform requirements, version numbering, release-day coordination.",
+      "file": ".codex/agents/release-manager.toml",
+      "focus": "Prepare versioned artifacts, platform requirements, release notes and rollback checks. Verify exact build identity and test evidence; publishing, store submission and deployment need explicit authorization."
+    },
+    {
+      "id": "security-engineer",
+      "department": "engineering",
+      "lead": "technical-director",
+      "engine": "any",
+      "description": "Protects against cheating, exploits, breaches — anti-cheat measures, secure save data and network comms, player privacy compliance.",
+      "file": ".codex/agents/security-engineer.toml",
+      "focus": "Review trust boundaries, server validation, save tampering, secret exposure and player-data minimization. Use scoped local defensive tests; do not scan third-party systems or weaken protections."
+    },
+    {
+      "id": "sound-designer",
+      "department": "audio",
+      "lead": "audio-director",
+      "engine": "any",
+      "description": "SFX specifications and spec sheets — audio event documentation, mixing parameters, sound category definitions.",
+      "file": ".codex/agents/sound-designer.toml",
+      "focus": "Specify and implement licensed SFX events, attenuation, variation and mix priorities. Test repeated events, spatial positioning and volume controls in-game; distinguish generated placeholders from production audio."
+    },
+    {
+      "id": "systems-designer",
+      "department": "design",
+      "lead": "game-designer",
+      "engine": "any",
+      "description": "Detailed subsystem mechanics — combat formulas, progression curves, crafting recipes, status effect interactions, mathematical modeling of a mechanic.",
+      "file": ".codex/agents/systems-designer.toml",
+      "focus": "Define formulas, status interactions and progression with units, bounds and examples. Test stacking, zero/negative values and overflow-like extremes; expose assumptions for gameplay implementation."
+    },
+    {
+      "id": "technical-artist",
+      "department": "art",
+      "lead": "art-director",
+      "engine": "any",
+      "description": "Technical artist bridging art and engineering — shaders, VFX, rendering optimization, art pipeline tools, art-to-engine issues.",
+      "file": ".codex/agents/technical-artist.toml",
+      "focus": "Bridge asset import, materials, VFX and runtime budgets. Preserve licensed content and source assets; verify effect readability, references and render cost on actual captured frames."
+    },
+    {
+      "id": "technical-director",
+      "department": "direction",
+      "lead": "producer",
+      "engine": "any",
+      "description": "High-level technical decisions — engine architecture, technology choices, performance strategy, technical risk, cross-system conflicts.",
+      "file": ".codex/agents/technical-director.toml",
+      "focus": "Resolve engine architecture and cross-system risks with small evidence-backed decisions. Preserve the chosen engine and existing working systems; ask before major migration, new service or irreversible change."
+    },
+    {
+      "id": "tools-programmer",
+      "department": "engineering",
+      "lead": "lead-programmer",
+      "engine": "any",
+      "description": "Internal dev tools — editor extensions, content authoring tools, debug utilities, pipeline automation, editor workflow.",
+      "file": ".codex/agents/tools-programmer.toml",
+      "focus": "Build editor/pipeline tools with preview, validation and non-destructive defaults. Preserve metadata and user changes; test invalid paths, repeated runs, cancellation and recovery before bulk operations."
+    },
+    {
+      "id": "ue-blueprint-specialist",
+      "department": "engine",
+      "lead": "unreal-specialist",
+      "engine": "unreal",
+      "description": "Blueprint architecture and Blueprint/C++ boundary — optimization, maintainable graphs. Prevents Blueprint spaghetti, enforces clean BP patterns.",
+      "file": ".codex/agents/ue-blueprint-specialist.toml",
+      "focus": "Keep Blueprint graphs readable and the Blueprint/C++ boundary deliberate. Treat uasset files as binary editor-owned assets; use supported editor tooling and compile/test graphs rather than fabricating text patches."
+    },
+    {
+      "id": "ue-gas-specialist",
+      "department": "engine",
+      "lead": "unreal-specialist",
+      "engine": "unreal",
+      "description": "Gameplay Ability System — abilities, gameplay effects, attribute sets, tags, ability tasks, prediction. Prevents common GAS anti-patterns.",
+      "file": ".codex/agents/ue-gas-specialist.toml",
+      "focus": "Check existing AbilitySystemComponent ownership, attribute sets, tags and effect lifecycle. Verify authority/prediction and cancellation; do not add GAS to a simple project solely for this role."
+    },
+    {
+      "id": "ue-replication-specialist",
+      "department": "engine",
+      "lead": "unreal-specialist",
+      "engine": "unreal",
+      "description": "Unreal networking — property replication, RPCs, client prediction, relevancy, net serialization, bandwidth. Server-authoritative architecture.",
+      "file": ".codex/agents/ue-replication-specialist.toml",
+      "focus": "Trace autonomous proxy, simulated proxy and authority movement. Check RPC ownership, relevance and replicated state; avoid server/client movement competition and verify two-client behavior under realistic delay."
+    },
+    {
+      "id": "ue-umg-specialist",
+      "department": "engine",
+      "lead": "unreal-specialist",
+      "engine": "unreal",
+      "description": "Unreal UI implementation — UMG widget hierarchy, data binding, CommonUI input routing, widget styling, UI optimization.",
+      "file": ".codex/agents/ue-umg-specialist.toml",
+      "focus": "Preserve UMG widget assets, references and existing input routing. Test focus, screen transitions, binding lifetime, scale and controller navigation; avoid creating a second UI system in C++."
+    },
+    {
+      "id": "ui-programmer",
+      "department": "engineering",
+      "lead": "lead-programmer",
+      "engine": "any",
+      "description": "Implements user interface systems — menus, HUDs, inventory screens, dialogue boxes, UI framework code, screen flow.",
+      "file": ".codex/agents/ui-programmer.toml",
+      "focus": "Implement HUD/menu behavior using the project UI stack. Preserve scene/prefab/widget references and accessible focus. Test open/close/back, double activation, pause and missing data."
+    },
+    {
+      "id": "unity-addressables-specialist",
+      "department": "engine",
+      "lead": "unity-specialist",
+      "engine": "unity",
+      "description": "Unity asset management — Addressable groups, loading/unloading, content catalogs, remote delivery, asset bundle optimization, fast load times.",
+      "file": ".codex/agents/unity-addressables-specialist.toml",
+      "focus": "Inspect Addressables version, group settings and handle lifetime. Test load failure, release/unload, scene transition and content catalog compatibility; no remote hosting changes without authorization."
+    },
+    {
+      "id": "unity-dots-specialist",
+      "department": "engine",
+      "lead": "unity-specialist",
+      "engine": "unity",
+      "description": "Unity Data-Oriented Technology Stack — Entity Component System, Jobs, Burst compiler optimization, hybrid renderer, correct ECS patterns.",
+      "file": ".codex/agents/unity-dots-specialist.toml",
+      "focus": "Use the installed Entities/Jobs/Burst APIs and existing architecture. Validate entity lifetimes, job dependencies and sync points; profile before converting MonoBehaviour systems to ECS."
+    },
+    {
+      "id": "unity-shader-specialist",
+      "department": "engine",
+      "lead": "unity-specialist",
+      "engine": "unity",
+      "description": "Unity rendering — Shader Graph, custom HLSL, VFX Graph, render pipeline customization (URP/HDRP), post-processing within performance budgets.",
+      "file": ".codex/agents/unity-shader-specialist.toml",
+      "focus": "Match Shader Graph/HLSL/VFX work to installed URP/HDRP or built-in pipeline. Check render target compatibility, variants and overdraw with real frames; preserve material references."
+    },
+    {
+      "id": "unity-specialist",
+      "department": "engine",
+      "lead": "technical-director",
+      "engine": "unity",
+      "description": "Authority on Unity-specific patterns and APIs — guides MonoBehaviour vs DOTS/ECS, Unity subsystems including Addressables and Input System.",
+      "file": ".codex/agents/unity-specialist.toml",
+      "focus": "Inspect Unity/package versions, scenes, prefabs, serialization and Input System configuration. Keep Inspector wiring and .meta GUIDs intact; choose narrowly needed Unity specialists and run actual editor/build checks."
+    },
+    {
+      "id": "unity-ui-specialist",
+      "department": "engine",
+      "lead": "unity-specialist",
+      "engine": "unity",
+      "description": "Unity UI implementation — UI Toolkit (UXML/USS), UGUI Canvas, data binding, runtime UI performance, cross-platform adaptation.",
+      "file": ".codex/agents/unity-ui-specialist.toml",
+      "focus": "Use the existing UGUI or UI Toolkit stack, not both by default. Preserve prefab/UXML bindings; test focus, Canvas scaling, resolution, event subscription lifetime and repeated opening."
+    },
+    {
+      "id": "unreal-specialist",
+      "department": "engine",
+      "lead": "technical-director",
+      "engine": "unreal",
+      "description": "Authority on Unreal-specific patterns and APIs — guides Blueprint vs C++, UE subsystems (GAS, Enhanced Input, Niagara, etc.).",
+      "file": ".codex/agents/unreal-specialist.toml",
+      "focus": "Inspect Unreal version, modules, reflection declarations and asset references. Preserve thin Blueprint configuration over C++ where useful; verify compilation plus editor behavior and actual engine toolchain availability."
+    },
+    {
+      "id": "ux-designer",
+      "department": "design",
+      "lead": "art-director",
+      "engine": "any",
+      "description": "User experience flows, interaction design, information architecture — user flow mapping, interaction pattern design, onboarding, accessibility requirements.",
+      "file": ".codex/agents/ux-designer.toml",
+      "focus": "Make readable flows, feedback, hierarchy and onboarding around actual player tasks. Cover error, empty, paused and interrupted states; validate usability without silently changing game rules."
+    },
+    {
+      "id": "world-builder",
+      "department": "narrative",
+      "lead": "narrative-director",
+      "engine": "any",
+      "description": "World builder for lore — factions, cultures, history, geography, ecology, world rules. Faction design, lore consistency checks.",
+      "file": ".codex/agents/world-builder.toml",
+      "focus": "Create consistent factions, geography and world rules tied to playable locations. Keep a compact canon and expose contradictions; do not expand a small demo into an encyclopedia."
+    },
+    {
+      "id": "writer",
+      "department": "narrative",
+      "lead": "narrative-director",
+      "engine": "any",
+      "description": "Writer of player-facing text — dialogue, lore entries, item and ability descriptions, environmental text.",
+      "file": ".codex/agents/writer.toml",
+      "focus": "Write concise player-facing dialogue, item text and prompts matching approved tone. Respect localization keys, placeholders and UI limits; do not make gameplay promises unsupported by implementation."
+    }
+  ]
+}

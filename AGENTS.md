@@ -21,3 +21,7 @@ From this repository root run `python scripts/validate.py` and `python -m unitte
 ## Code Review Rules
 
 Flag accidental scope expansion, unsafe ownership/authority in networked gameplay, repeated event subscriptions, missing release/cancel handling, scene/prefab reference breakage, and test claims unsupported by logs or observations. Reject secret/asset leakage and unsupported engine/version assumptions.
+
+## 49-agent studio mode
+
+For cross-discipline work use `.agents/skills/game-studio/SKILL.md` and `studio/COORDINATION.md`. The registry is `studio/agents.json`; native definitions live in `.codex/agents/`. Select relevant roles, not all 49. Keep the main session as coordinator, cap concurrent children at four, assign exclusive writable files and serialize binary asset/editor changes. Confirm actual runtime discovery before claiming a named agent ran. If spawning is unavailable, label sequential role passes; do not fabricate independent review. The three original skills remain available for small changes.

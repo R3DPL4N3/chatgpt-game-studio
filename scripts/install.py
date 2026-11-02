@@ -1,4 +1,4 @@
-"""Preview or install the small workflow bundle. Python 3.10+, stdlib only."""
+"""Preview or install the small workflow bundle. Python 3.11+, stdlib only."""
 from __future__ import annotations
 
 import argparse
@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILLS = ("game-plan-feature", "game-implement-feature", "game-review-test")
+SKILLS = ("game-plan-feature", "game-implement-feature", "game-review-test", "game-studio")
 COPY_PLAN = {
     "AGENTS.md": "AGENTS.md",
     "templates/PROJECT.md": "studio/PROJECT.md",
@@ -19,6 +19,15 @@ COPY_PLAN = {
     "THIRD_PARTY_NOTICES.md": "studio/THIRD_PARTY_NOTICES.md",
     **{f".agents/skills/{name}/SKILL.md": f".agents/skills/{name}/SKILL.md" for name in SKILLS},
 }
+AGENT_IDS = ('accessibility-specialist', 'ai-programmer', 'analytics-engineer', 'art-director', 'audio-director', 'community-manager', 'creative-director', 'devops-engineer', 'economy-designer', 'engine-programmer', 'game-designer', 'gameplay-programmer', 'godot-csharp-specialist', 'godot-gdextension-specialist', 'godot-gdscript-specialist', 'godot-shader-specialist', 'godot-specialist', 'lead-programmer', 'level-designer', 'live-ops-designer', 'localization-lead', 'narrative-director', 'network-programmer', 'performance-analyst', 'producer', 'prototyper', 'qa-lead', 'qa-tester', 'release-manager', 'security-engineer', 'sound-designer', 'systems-designer', 'technical-artist', 'technical-director', 'tools-programmer', 'ue-blueprint-specialist', 'ue-gas-specialist', 'ue-replication-specialist', 'ue-umg-specialist', 'ui-programmer', 'unity-addressables-specialist', 'unity-dots-specialist', 'unity-shader-specialist', 'unity-specialist', 'unity-ui-specialist', 'unreal-specialist', 'ux-designer', 'world-builder', 'writer')
+COPY_PLAN.update({
+    ".codex/config.toml": ".codex/config.toml",
+    "studio/agents.json": "studio/agents.json",
+    "studio/COORDINATION.md": "studio/COORDINATION.md",
+    "templates/HANDOFF.md": "studio/templates/HANDOFF.md",
+    "scripts/studio.py": "studio/tools/studio.py",
+    **{f".codex/agents/{name}.toml": f".codex/agents/{name}.toml" for name in AGENT_IDS},
+})
 
 
 def reject_symlinks(path: Path) -> None:
